@@ -10,11 +10,20 @@
         <div id="message" class="col-5">
             <div id="letter" class="red">
                 Has lower case letter
+            </div>
+            <div id="capital" class="red">
+                Has capital case letter
+            </div>
+            <div id="number" class="red">
+                Has a number
+            </div>
+            <div id="specialchar" class="red">
+                Has a special character
+            </div>
                 <div class="progress">
                     <div id="p-bar" class="progress-bar" style="width: 0%" role="progressbar" aria-valuenow="0"
                          aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-            </div>
 
         </div>
     </div>
@@ -36,6 +45,7 @@
         let upperCase = new Observable(0);
         let specialCharacter = new Observable(0);
         let passwordLength = new Observable(0);
+        let numBer = new Observable(0);
 
         let id = "p-bar";
 
@@ -114,12 +124,22 @@
             }
         });
 
+        numBer.onChange(function (v) {
+
+            if(v === 0) {
+                setProgressBarWidth(id,-25)
+            } else {
+                setProgressBarWidth(id,+25)
+            }
+        });
+
 
         passwordField.onkeyup = function () {
             // Validate lowercase letters
             let lowerCaseLetters = /[a-z]/g;
             let upperCaseLetters = /[A-Z]/g;
             let specialCharacters = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+            let numberCase = /[0-9]/g;
             let passwordMinLength = 6;
 
             if(passwordField.value.length >= passwordMinLength) {
@@ -142,6 +162,12 @@
                 specialCharacter.setValue(1);
             } else {
                 specialCharacter.setValue(0);
+            }
+            if(passwordField.value.match(numberCase)){
+                numBer.setValue(1);
+            }
+            else{
+                numBer.setValue(0);
             }
 
         }
