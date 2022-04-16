@@ -43,9 +43,10 @@ def create_app():
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__)
 
+    """
     logging.basicConfig(filename='logs/record.log', level=logging.DEBUG,
                         format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-
+    """
 
     app.secret_key = 'This is an INSECURE secret!! DO NOT use this in production!!'
     login_manager.init_app(app)
