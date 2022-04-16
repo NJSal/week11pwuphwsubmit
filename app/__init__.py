@@ -13,7 +13,7 @@ from flask_login import (
     login_required,
 )
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_wtf.csrf import CSRFProtect
 
@@ -42,8 +42,10 @@ def page_not_found(e):
 def create_app():
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__)
+
     logging.basicConfig(filename='logs/record.log', level=logging.DEBUG,
                         format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
 
     app.secret_key = 'This is an INSECURE secret!! DO NOT use this in production!!'
     login_manager.init_app(app)
