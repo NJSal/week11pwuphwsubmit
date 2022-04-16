@@ -1,3 +1,4 @@
+"""
 import os
 
 class Config(object):
@@ -23,3 +24,7 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     TESTING = True
     SESSION_COOKIE_SECURE = False
+
+
+"""
+
